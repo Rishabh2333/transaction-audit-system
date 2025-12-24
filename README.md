@@ -10,9 +10,9 @@
 The Transaction Audit System is a full-stack application designed to provide secure user authentication, atomic peer-to-peer fund transfers, and immutable transaction audit logging.
 
 The application demonstrates data consistency and reliability using database-level transactions. User authentication is implemented using JWT-based stateless authentication, and all fund transfers are executed atomically using Prisma transactions, ensuring that either all changes succeed or none are applied.
-
 Each transaction is persistently recorded in an audit log, enabling traceability, accountability, and transaction history tracking.
 
+---
 ## 🛠 Technology Stack
 
 ### Backend
@@ -31,57 +31,60 @@ Each transaction is persistently recorded in an audit log, enabling traceability
 ### AI Tools
 - ChatGPT (used for guidance and structuring)
 
+---
 ## ⚙️ Setup and Run Instructions
 
 ### Prerequisites
 - Node.js (v18 or above)
 - npm
 - Git
-
+---
 ### 📥 Clone the Repository
 
 ```bash
 git clone https://github.com/Rishabh2333/transaction-audit-system.git
 cd transaction-audit-system
-
-
+````
+---
 ### 🔧 Backend Setup
 
 ```bash
 cd backend
 npm install
-
+```
 
 Create a .env file inside the backend directory:
-
+```env
 PORT=5000
 JWT_SECRET=your_jwt_secret
 DATABASE_URL=file:./dev.db
-
+```
 
 Generate the Prisma client and start the backend server:
-
+```bash
 npx prisma generate
 npm run dev
-
+```
 
 Backend runs at:
-
+```
 http://localhost:5000
-
+```
+---
 ### 🎨 Frontend Setup
 
 ```bash
 cd frontend
 npm install
 npm run dev
-
+```
 
 
 Frontend will run at:
-
+```
 http://localhost:5173
-
+```
+---
 ## 📡 API Documentation
 
 ### Authentication
@@ -99,6 +102,7 @@ http://localhost:5173
 | POST   | /api/transactions/transfer      | Atomic fund transfer         |
 | GET    | /api/transactions/history       | User transaction history     |
 
+---
 ## 🗄 Database Schema (Prisma)
 
 ### User Model
@@ -124,7 +128,7 @@ http://localhost:5173
 - amount
 - status
 - timestamp
-
+---
 
 ## 📁 Backend Folder Structure
 
@@ -152,7 +156,8 @@ backend/
 │
 ├── .env
 └── package.json
-
+```
+---
 ## 📁 Frontend Folder Structure
 
 ```text
@@ -168,7 +173,8 @@ frontend/
 │
 ├── .gitignore
 └── package.json
-
+```
+---
 
 ## 🔐 Security Highlights
 
@@ -178,7 +184,7 @@ frontend/
 - Atomic database transactions using Prisma
 - Immutable transaction audit logs for traceability
 
-
+---
 ##⚙️ Atomic Transaction Design
 
 -All fund transfers are executed inside a single Prisma transaction to guarantee:
@@ -188,6 +194,7 @@ frontend/
 -Audit log insertion
 -If any step fails, the entire operation is rolled back, ensuring data consistency.
 
+---
 ## 🤖 AI-Assisted Development
 
 - Assisted in backend architecture planning
@@ -196,7 +203,15 @@ frontend/
 - Assisted with JWT authentication and authorization flow
 - Helped structure frontend-backend integration
 - Assisted in structuring and documenting this README.md
+---
+## 📊 AI Effectiveness Score
 
+**Score: 4 / 5**
+
+**Justification:**  
+AI tools significantly improved development efficiency by assisting with project architecture planning, Prisma schema design, authentication flow, and API structuring, which saved several hours of manual effort. However, additional time was required to debug version-specific Prisma v7 issues and adapt AI-generated suggestions accordingly, slightly reducing overall efficiency.
+
+---
 
 👤 Author
 
