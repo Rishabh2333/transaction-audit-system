@@ -225,6 +225,6 @@ All logic was reviewed, tested, and validated manually.
 
 👤 Author
 
-<Your Name>
+Rishabh Mishra
 B.Tech Student
-(Institute Name)
+VJTI
