@@ -1,60 +1,51 @@
-📹 Project Demo Video (Unlisted)
+# 💸 Transaction Audit System
 
-▶️ (Add your YouTube unlisted demo link here)
+## 📹 Project Demo Video (Unlisted)
+▶️ Add your demo video link here
 
-🌐 Live Project (Optional)
+## 🌐 Project Overview
 
-🔗 (If deployed, add link here)
+The Transaction Audit System is a full-stack application designed to provide secure user authentication, atomic peer-to-peer fund transfers, and immutable transaction audit logging.
 
-📌 Project Overview
+The application demonstrates data consistency and reliability using database-level transactions. User authentication is implemented using JWT-based stateless authentication, and all fund transfers are executed atomically using Prisma transactions, ensuring that either all changes succeed or none are applied.
 
-This project is an implementation of Assignment 2 – Real-time Transaction & Audit Log System.
+Each transaction is persistently recorded in an audit log, enabling traceability, accountability, and transaction history tracking.
 
-The application enables secure peer-to-peer fund transfers between users with strict transactional integrity. All balance updates and audit log entries are executed atomically using Prisma ORM transactions, ensuring that either all operations succeed or none are applied.
+## 🛠 Technology Stack
 
-User authentication is handled via JWT-based stateless authentication, and all transaction-related endpoints are protected. Every successful fund transfer generates an immutable audit log, providing traceability and accountability.
+### Backend
+- Node.js
+- Express.js
+- Prisma ORM (v7)
+- SQLite
+- JWT (JSON Web Tokens)
+- bcrypt
 
-The system follows a clean backend-first architecture with an optional lightweight frontend to demonstrate real-world usability. AI-assisted development was used responsibly as permitted by the submission guidelines.
+### Frontend
+- React.js (Vite)
+- Fetch API
+- CSS
 
-🛠️ Technology Stack
-Backend
+### AI Tools
+- ChatGPT (used for guidance and structuring)
 
-Node.js
+## ⚙️ Setup and Run Instructions
 
-Express.js
+### Prerequisites
+- Node.js (v18 or above)
+- npm
+- Git
 
-Prisma ORM
+### 📥 Clone the Repository
 
-SQLite
-
-JWT (JSON Web Tokens)
-
-Frontend (Optional)
-
-React.js
-
-Vite
-
-Axios
-
-AI Tools
-
-ChatGPT (for guided development and debugging)
-
-⚙️ Setup and Run Instructions
-Prerequisites
-
-Node.js (v18 or above)
-
-npm
-
-Git
-
-📥 Clone the Repository
-git clone <your-repository-url>
+```bash
+git clone https://github.com/Rishabh2333/transaction-audit-system.git
 cd transaction-audit-system
 
-🔧 Backend Setup
+
+### 🔧 Backend Setup
+
+```bash
 cd backend
 npm install
 
@@ -62,87 +53,80 @@ npm install
 Create a .env file inside the backend directory:
 
 PORT=5000
-JWT_SECRET=supersecretkey
+JWT_SECRET=your_jwt_secret
+DATABASE_URL=file:./dev.db
 
 
-Initialize the database and Prisma client:
+Generate the Prisma client and start the backend server:
 
-npx prisma migrate dev
 npx prisma generate
-
-
-Start the backend server:
-
 npm run dev
 
 
-Backend will run at:
+Backend runs at:
 
 http://localhost:5000
 
-🎨 Frontend Setup (Optional)
+### 🎨 Frontend Setup
+
+```bash
 cd frontend
 npm install
 npm run dev
+
 
 
 Frontend will run at:
 
 http://localhost:5173
 
-📡 API Documentation
-Authentication
-Method	Endpoint	Description
-POST	/api/auth/register	Register new user
-POST	/api/auth/login	User login (JWT)
-Transactions
-Method	Endpoint	Description
-POST	/api/transactions/transfer	Atomic fund transfer
-GET	/api/transactions/history	Fetch user transaction audit history
-🗄️ Database Schema (Prisma Models)
-User
+## 📡 API Documentation
 
-id
+### Authentication
 
-name
+| Method | Endpoint            | Description                     |
+| ------ | ------------------- | ------------------------------- |
+| POST   | /api/auth/register  | Register a new user             |
+| POST   | /api/auth/login     | User login (JWT issued)         |
+| GET    | /api/auth/me        | Fetch authenticated user data  |
 
-email (unique)
+### Transactions
 
-password (hashed)
+| Method | Endpoint                        | Description                  |
+| ------ | ------------------------------- | ---------------------------- |
+| POST   | /api/transactions/transfer      | Atomic fund transfer         |
+| GET    | /api/transactions/history       | User transaction history     |
 
-balance
+## 🗄 Database Schema (Prisma)
 
-createdAt
+### User Model
+- id
+- name
+- email (unique)
+- password (hashed)
+- balance
+- createdAt
 
-Transaction
+### Transaction Model
+- id
+- senderId
+- receiverId
+- amount
+- createdAt
 
-id
+### AuditLog Model
+- id
+- transactionId
+- senderId
+- receiverId
+- amount
+- status
+- timestamp
 
-senderId
 
-receiverId
+## 📁 Backend Folder Structure
 
-amount
-
-createdAt
-
-AuditLog
-
-id
-
-transactionId (unique)
-
-senderId
-
-receiverId
-
-amount
-
-status
-
-createdAt
-
-📁 Backend Folder Structure
+```text
 backend/
 │
 ├── prisma/
@@ -152,16 +136,14 @@ backend/
 ├── src/
 │   ├── controllers/
 │   │   ├── authController.js
-│   │   ├── transactionController.js
-│   │   └── historyController.js
+│   │   └── transactionController.js
 │   │
 │   ├── middleware/
 │   │   └── authMiddleware.js
 │   │
 │   ├── routes/
 │   │   ├── authRoutes.js
-│   │   ├── transactionRoutes.js
-│   │   └── historyRoutes.js
+│   │   └── transactionRoutes.js
 │   │
 │   ├── prismaClient.js
 │   └── index.js
@@ -169,59 +151,50 @@ backend/
 ├── .env
 └── package.json
 
-📁 Frontend Folder Structure (Optional)
+## 📁 Frontend Folder Structure
+
+```text
 frontend/
 │
 ├── src/
-│   ├── api.js
+│   ├── components/
+│   ├── pages/
 │   ├── App.jsx
-│   ├── main.jsx
-│   └── index.css
+│   ├── App.css
+│   ├── index.css
+│   └── main.jsx
 │
 ├── .gitignore
 └── package.json
 
-🔐 Security Highlights
 
-JWT-based stateless authentication
+## 🔐 Security Highlights
 
-Protected transaction routes
+- JWT-based stateless authentication
+- Password hashing using bcrypt
+- Protected API routes using authentication middleware
+- Atomic database transactions using Prisma
+- Immutable transaction audit logs for traceability
 
-Prisma $transaction() for atomic operations
 
-Immutable audit logs
+##⚙️ Atomic Transaction Design
 
-Server-side validation for all transfers
+-All fund transfers are executed inside a single Prisma transaction to guarantee:
+-Sender balance deduction
+-Receiver balance credit
+-Transaction record creation
+-Audit log insertion
+-If any step fails, the entire operation is rolled back, ensuring data consistency.
 
-⚙️ Atomic Transaction Design
+## 🤖 AI-Assisted Development
 
-All fund transfers are executed inside a single Prisma transaction to guarantee:
+- Assisted in backend architecture planning
+- Helped design Prisma schema and model relations
+- Guided implementation of atomic fund transfers using Prisma transactions
+- Assisted with JWT authentication and authorization flow
+- Helped structure frontend-backend integration
+- Assisted in structuring and documenting this README.md
 
-Sender balance deduction
-
-Receiver balance credit
-
-Transaction record creation
-
-Audit log insertion
-
-If any step fails, the entire operation is rolled back, ensuring data consistency.
-
-🤖 AI-Assisted Development
-
-AI tools were used to:
-
-Assist in designing Prisma schema relationships
-
-Guide implementation of atomic transaction logic
-
-Debug Prisma & JWT integration issues
-
-Help structure backend controllers and routes
-
-Assist in preparing this README documentation
-
-All logic was reviewed, tested, and validated manually.
 
 👤 Author
 
